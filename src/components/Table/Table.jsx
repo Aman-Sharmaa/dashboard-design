@@ -15,10 +15,10 @@ const DataTable = ({ heading, data, loading, onEdit, onDelete, mongoId }) => {
   useEffect(() => {
     if (data && data.length > 0) {
       const idKey = mongoId; // Use the ID key passed as a prop
-      const fetchedHeaders = Object.keys(data[0]).filter(header => header !== idKey);
+      const fetchedHeaders = Object.keys(data[0]).filter(header => header !== idKey && header !== 'id'); // Exclude the ID fields
       setHeaders(fetchedHeaders);
     }
-  }, [data, mongoId]); // Ensure mongoId is included in the dependencies
+  }, [data, mongoId]);
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
 
@@ -142,7 +142,7 @@ const DataTable = ({ heading, data, loading, onEdit, onDelete, mongoId }) => {
                 <Form.Control
                   type="text"
                   defaultValue={editData ? editData[header] : ''}
-                  readOnly={header === mongoId} // Make the mongoId field read-only
+                  onChange={(e) => setEditData({ ...editData, [header]: e.target.value })} // Allow editing
                 />
               </Form.Group>
             ))}
