@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-color: white;
+}
+#primary-btn,:where(.css-dev-only-do-not-override-1gwfwyx).ant-modal .ant-modal-footer >.ant-btn+.ant-btn{
+    background: linear-gradient(to right, #F0B832, #F8421E);
+    color: white;
+    border: none;
+    width: 140px;
+    height: 35px;
+    border-radius: 6px;
+    padding: 4px;
+}
+button.sidebar-toggle {
+    border: none;
+}
+.custom-page{
+    padding: 80px;
+    padding-top: 0px;
+    margin-left: 210px;
+}
+.border-bottom {
+    border-bottom: solid white 1px !important;
+}
+h4.title {
+    color: black;
+}
+li.nav-item.active-nav a {
+    color: #F0B832 !important;
+}
+.title{
+    color: black;
+}
+.form-comp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-comp .form-floating.mb-3{
+    width: 33%;
+}
+.form-comp.full .form-floating.mb-3{
+    width: 100%;
+}
+.form-comp.half .form-floating.mb-3{
+    width:49.5%;
+}
+.form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-control-plaintext~label::after, .form-floating>.form-select~label::after {
+    position: absolute;
+    inset: 1rem .5rem;
+    z-index: -1;
+    height: 1.5em;
+    content: "";
+    background-color: transparent;
+    border-radius: none;
+    color: white !important;
+}
+.form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-control-plaintext~label, .form-floating>.form-select~label {
+    color: #F0B832;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+button.sidebar-toggle {
+    display: none;
+}
+button.navbar-toggler {
+    display: none;
+}
+td {
+    color: black !important;
+}
+h4.card-title {
+    color: black!important;
+}
+button#primary-btn {
+    margin-left: 310px;
+}

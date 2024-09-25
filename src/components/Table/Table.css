@@ -1,0 +1,34 @@
+.card {
+    background: transparent;
+}
+h4.card-title {
+    color: white;
+}
+.card-body {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    padding: 30px 25px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.table thead tr {
+    background: linear-gradient(to right, #F0B832, #F8421E);
+    color: white!important;
+}
+.table thead tr th{
+    color: white!important;
+}
+
+.table tr, th, td{
+    border:solid #1a1a1a 0.5px;
+}
+
+.table td{
+   color:white;
+}
+.table tbody tr:last-child td{
+    border-right:solid black 1px;
+}

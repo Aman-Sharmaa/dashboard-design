@@ -1,0 +1,68 @@
+aside.sidebar.sidebar-default.navs-rounded {
+    width: 70px;
+    background-color: white;
+}
+aside.sidebar.sidebar-default.navs-rounded.active {
+    width: 300px;
+}
+
+aside.sidebar.sidebar-default.navs-rounded .rotate{
+    transform: rotate(180deg);
+    
+}
+aside.sidebar.sidebar-default.navs-rounded.active .rotate{
+    transform: rotate(0deg);
+}
+
+aside.sidebar.sidebar-default.navs-rounded span.item-name{
+ font-size: 0px;
+ display: none;
+}
+aside.sidebar.sidebar-default.navs-rounded.active span.item-name{
+    font-size: 16px;
+    display: block;
+   }
+
+   aside.sidebar.sidebar-default.navs-rounded.active  i.right-icon{
+    display: block;
+   }
+   aside.sidebar.sidebar-default.navs-rounded  i.right-icon{
+    display: none;
+   }
+
+   aside.sidebar.sidebar-default.navs-rounded.active
+   .img-fluid {
+    max-width: 60%;
+    height: auto;
+}
+
+aside.sidebar.sidebar-default.navs-rounded
+.img-fluid {
+ max-width: 100%;
+ height: auto;
+}
+.sidebar .sidebar-header{
+    border-bottom: solid #fff 1px;
+}.iq-navbar {
+    background: #fff;
+}
+
+aside.sidebar.sidebar-default.navs-rounded.active {
+    width: 300px;
+    border-right: solid white 2px;
+    box-shadow: 0 0 40px 0 rgba(0,0,0,.05);
+}
+.sidebar-body.p-0.data-scrollbar {
+    overflow: scroll;
+    height: 90vh;
+
+    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+    -webkit-overflow-scrolling: touch; /* Enables momentum scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    /* Hide scrollbar for WebKit browsers */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
