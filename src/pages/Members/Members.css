@@ -1,0 +1,80 @@
+.main-content{
+    background-color: white;
+    margin-top: -0px;
+}
+.cards{
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.parent-cards{
+    max-width: 23%;
+    min-width: 23%;
+    background-color: #020716;
+    margin: 10px;
+    overflow: hidden;
+    overflow: hidden;
+    height: 140px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+.sm-cards{
+    width: 100%;
+}
+.sm-cards::before{
+    content: "";
+    position: absolute;
+    content: "";
+    height: 100px;
+    width: 2px;
+    background: -webkit-linear-gradient(350deg, #f9b707, transparent);
+    background: -o-linear-gradient(350deg, #f9b707, transparent);
+    background: linear-gradient(100deg, #f9b707, transparent);
+}
+
+.sm-cards::after{
+    content: "";
+    position: absolute;
+    content: "";
+    height: 2px;
+    margin-left: 0px;
+    width: 100px;
+    background: -webkit-linear-gradient(40deg, #f9b707, transparent);
+    background: -o-linear-gradient(40deg, #f9b707, transparent);
+    background: linear-gradient(50deg, #f9b707, transparent);
+}
+
+.sm-cards-inner{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.sm-cards-icon{
+    padding: 15px;
+    width: 60px;
+    height: 60px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+.sm-cards-icon svg{
+    color: #fff;
+}
+.sm-cards-inner h2{
+    color:white;
+    font-weight: 700;
+    padding: 14px;
+    width: 71%;
+}
+.sm-cards-inner p{
+    width: 100%;
+    padding-top: 10px;
+    color:white;
+    font-size: 16px;
+}
+#message{
+    color: red;
+}

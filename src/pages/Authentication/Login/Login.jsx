@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Modal, Button, Form, Input, Select,message } from 'antd';
 import "./Login.css";
-
+const { Option } = Select;
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +31,71 @@ const Login = () => {
     }
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [form] = Form.useForm();
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+
+  const handleCancel = () => {
+    form.resetFields();
+    setIsModalVisible(false);
+  };
+
+  const handleOk = () => {
+   
+    form
+      .validateFields()
+      .then(values => {
+      
+        
+        let data = JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phoneNumber: values.phoneNumber,
+          password: values.password
+        });
+
+       
+        let config = {
+          method: 'post',
+          maxBodyLength: Infinity,
+          url: 'http://localhost:8080/kitchensink/member/register/',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+
+        axios.request(config)
+          .then((response) => {
+            console.log('Response:', JSON.stringify(response.data));
+
+            if(response.data.status == true){
+              message.success('Account created successfully!');
+              form.resetFields(); 
+              setIsModalVisible(false); 
+            }
+            else{
+              message.error(response.error.message);
+            }
+           
+          })
+          .catch((error) => {
+            message.error('Failed to create account. Please try again.');
+          });
+      })
+      .catch(info => {
+        console.log('Validation Failed:', info);
+      });
+  };
+
+
+
+
+
   return (
     <div className="login-background">
      
@@ -40,7 +106,7 @@ const Login = () => {
             <div className="row justify-content-center h-100 align-items-center">
               <div className="col-lg-6 col-md-8 mt-5 log-cont">
                 <div className="logo-account">
-                 
+                  <button id="primary-btn" className="right" onClick={showModal}>Register</button>
                 </div>
                 <div className="card bg-dark">
                   <div className="card-body">
@@ -80,26 +146,7 @@ const Login = () => {
 </div>
 
 
-                        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                          <div className="form-group mb-0">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="Remember"
-                                checked={rememberMe}
-                                onChange={() => setRememberMe(!rememberMe)}
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="Remember"
-                              >
-                                Remember Me?
-                              </label>
-                            </div>
-                          </div>
-                         
-                        </div>
+                       
                         <div className="text-center mt-3">
                           <button
                             type="submit"
@@ -124,6 +171,73 @@ const Login = () => {
           </div>
         </section>
       </div>
+
+      <Modal
+      title="Create New Account"
+      visible={isModalVisible}
+      onCancel={handleCancel}
+      okText="Create"
+      cancelText="Cancel"
+      onOk={handleOk} // Submit form and send data via axios
+    >
+      <Form form={form} layout="vertical">
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[{ required: true, message: 'Please enter the name' }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Email Address"
+          name="email"
+          rules={[
+            { required: true, message: 'Please enter the email address' },
+            { type: 'email', message: 'Please enter a valid email' }
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Phone Number"
+          name="phoneNumber"
+        >
+          <Input type="text" maxLength={10} />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            { required: true, message: 'Please enter the password' },
+            { min: 6, message: 'Password must be at least 6 characters long' }
+          ]}
+        >
+          <Input type="password" />
+        </Form.Item>
+
+        <Form.Item
+          label="Confirm Password"
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Please confirm the password' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Passwords do not match!'));
+              }
+            })
+          ]}
+        >
+          <Input type="password" />
+        </Form.Item>
+      </Form>
+    </Modal>
     </div>
   );
 };

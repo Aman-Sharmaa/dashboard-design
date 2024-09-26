@@ -15,7 +15,7 @@ h4.card-title {
     overflow: hidden;
 }
 .table thead tr {
-    background: linear-gradient(to right, #F0B832, #F8421E);
+    background: linear-gradient(to right, #4FB23F, #409C39);
     color: white!important;
 }
 .table thead tr th{
@@ -31,4 +31,45 @@ h4.card-title {
 }
 .table tbody tr:last-child td{
     border-right:solid black 1px;
+}
+td.rowBtn button {
+    background: transparent;
+    color: black;
+    border: none;
+}
+button.green.btn.btn-primary {
+    color: green;
+}
+button.red.btn.btn-primary {
+    color: red;
+}
+
+td.rowBtn button:hover {
+    background: transparent;
+    color: black;
+    border: none;
+}
+button.red.btn.btn-primary {
+    color: red;
+}
+td.newRow button {
+    background: transparent;
+    border: none;
+}
+td.newRow button:hover {
+    background: transparent;
+    border: none;
+}
+.modal-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.rowBtnn{
+    display: flex;
+    flex-direction: column;
+}
+
+.redBtn{
+    background: red !important;
 }

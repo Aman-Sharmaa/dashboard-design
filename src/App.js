@@ -8,6 +8,7 @@ import Login from './pages/Authentication/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Sidebar from './components/Sidebar/Sidebar';
 import MyProfile from './pages/Profile/MyProfile/MyProfile';
+import Members from './pages/Members/Members';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<><Sidebar /><Dashboard /></>} />
         <Route path="/profile" element={<><Sidebar /><MyProfile /></>} />
+        <Route path="/members" element={<><Sidebar /><Members /></>} />
       
       
 

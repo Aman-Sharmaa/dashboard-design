@@ -66,3 +66,18 @@ aside.sidebar.sidebar-default.navs-rounded.active {
         display: none;
     }
 }
+.topmenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.topmenu a{
+    color:white!important;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+li.nav-item.active-nav a.nav-link{
+    color:#409C39!important;
+}

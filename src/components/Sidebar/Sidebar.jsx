@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./Sidebar.css";
-import { Table, Pagination, Spinner, Button, Modal, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Input, Select } from 'antd';
+const { Option } = Select;
+
 
 const Sidebar = () => {
   const location = useLocation();
@@ -9,6 +11,7 @@ const Sidebar = () => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [showSaveConfirm, setShowSaveConfirm] = useState(false); 
   const userRole = localStorage.getItem('userRole');
+  const [isModalVisible, setIsModalVisible] = useState(false);
   console.log(userRole)
   const handleLogout = () => {
     localStorage.removeItem('userToken'); 
@@ -23,7 +26,9 @@ const Sidebar = () => {
 
 
   const handleAuth = () => {
+    
     setShowSaveConfirm(true); 
+  
   };
 
   const confirmSaveChanges = () => {
@@ -31,6 +36,12 @@ const Sidebar = () => {
     setShowSaveConfirm(false); 
    
   };
+  const [form] = Form.useForm();
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    form.resetFields(); 
+  };
+
 
 
 
@@ -68,7 +79,13 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
+  const handleChangePassword = ()=>{
+    console.log("change password");
+  }
   
 
   return (
@@ -87,7 +104,7 @@ const Sidebar = () => {
                
         
      
-           Logo here
+           <img src="https://1000logos.net/wp-content/uploads/2020/08/MongoDB-Logo.png" width="120px" alt="mongo" />
           
           </a>
         </div>
@@ -139,13 +156,22 @@ const Sidebar = () => {
                 )}
               </li>
 
+              <li className={`nav-item ${isActive("/members")}`}>
+                <a className="nav-link" href="/members">
+                  <i className="icon">
+                  <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                <path d="M9.34933 14.8577C5.38553 14.8577 2 15.47 2 17.9173C2 20.3665 5.364 20.9999 9.34933 20.9999C13.3131 20.9999 16.6987 20.3876 16.6987 17.9403C16.6987 15.4911 13.3347 14.8577 9.34933 14.8577Z" fill="currentColor"></path>                                <path opacity="0.4" d="M9.34935 12.5248C12.049 12.5248 14.2124 10.4062 14.2124 7.76241C14.2124 5.11865 12.049 3 9.34935 3C6.65072 3 4.48633 5.11865 4.48633 7.76241C4.48633 10.4062 6.65072 12.5248 9.34935 12.5248Z" fill="currentColor"></path>                                <path opacity="0.4" d="M16.1733 7.84873C16.1733 9.19505 15.7604 10.4513 15.0363 11.4948C14.961 11.6021 15.0275 11.7468 15.1586 11.7698C15.3406 11.7995 15.5275 11.8177 15.7183 11.8216C17.6165 11.8704 19.3201 10.6736 19.7907 8.87116C20.4884 6.19674 18.4414 3.79541 15.8338 3.79541C15.551 3.79541 15.2799 3.82416 15.0157 3.87686C14.9795 3.88453 14.9404 3.90177 14.9208 3.93244C14.8954 3.97172 14.914 4.02251 14.9394 4.05605C15.7232 5.13214 16.1733 6.44205 16.1733 7.84873Z" fill="currentColor"></path>                                <path d="M21.779 15.1693C21.4316 14.4439 20.593 13.9465 19.3171 13.7022C18.7153 13.5585 17.0852 13.3544 15.5695 13.3831C15.547 13.386 15.5343 13.4013 15.5324 13.4109C15.5294 13.4262 15.5363 13.4492 15.5656 13.4655C16.2662 13.8047 18.9737 15.2804 18.6332 18.3927C18.6185 18.5288 18.729 18.6438 18.867 18.6246C19.5333 18.5317 21.2476 18.1704 21.779 17.0474C22.0735 16.4533 22.0735 15.7634 21.779 15.1693Z" fill="currentColor"></path>                                </svg>                            
+                  </i>
+                  <span className="item-name">Members</span>
+                </a>
+              </li>
+
               
               {/* signout */}
               <li className="nav-item" onClick={handleLogout}>
                 <a className="nav-link">
                   <i className="icon">
                     <svg
-                      width="24"
+                      width="20"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -240,8 +266,9 @@ const Sidebar = () => {
                     >
                        <li>
       <div className="p-3 card-header justify-content-between border-bottom rounded-top">
-        <div className="header-title">
-          <button id="primary-btn" onClick={handleLogout}>Logout</button>
+        <div className="header-title topmenu">
+          <a >Profile</a>
+          <a onClick={showModal}>Change Password</a>
         </div>
       </div>
     </li>
@@ -253,20 +280,69 @@ const Sidebar = () => {
           </nav>
         </div>
       </main>
-      <Modal show={showSaveConfirm} onHide={() => setShowSaveConfirm(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Save Confirmation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>You are not a Authorized person.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowSaveConfirm(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={confirmSaveChanges}>
-            Okay
-          </Button>
-        </Modal.Footer>
-      </Modal>
+  
+      <Modal
+  title="You are not an authorized person."
+  visible={showSaveConfirm} 
+  onCancel={confirmSaveChanges}
+  okText="Okay Understood!"
+  cancelText="Cancel"
+  onOk={confirmSaveChanges}
+>
+  
+</Modal>
+
+
+      <Modal
+          title="Change Password"
+          visible={isModalVisible}
+          onCancel={handleCancel}
+          okText="Change Password"
+          cancelText="Cancel"
+          onOk={handleChangePassword}
+        >
+          <Form form={form} layout="vertical">
+
+          <Form.Item
+              label="Current Password"
+              name="password"
+            >
+              <Input type="password" />
+            </Form.Item>
+      
+            <Form.Item
+              label="New Password"
+              name="password"
+              rules={[
+                { required: true, message: 'Please enter the password' },
+                { min: 6, message: 'Password must be at least 6 characters long' }
+              ]}
+            >
+              <Input type="password" />
+            </Form.Item>
+
+            <Form.Item
+              label="Confirm Password"
+              name="confirmPassword"
+              dependencies={['password']}
+              rules={[
+                { required: true, message: 'Please confirm the password' },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('Passwords do not match!'));
+                  }
+                })
+              ]}
+            >
+              <Input type="password" />
+            </Form.Item>
+
+           
+          </Form>
+        </Modal>
     </>
   );
 };

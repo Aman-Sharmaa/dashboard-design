@@ -7,13 +7,18 @@ body{
     background-color: white;
 }
 #primary-btn,:where(.css-dev-only-do-not-override-1gwfwyx).ant-modal .ant-modal-footer >.ant-btn+.ant-btn{
-    background: linear-gradient(to right, #F0B832, #F8421E);
+    background: linear-gradient(to right, #4FB23F, #409C39);
     color: white;
     border: none;
     width: 140px;
     height: 35px;
     border-radius: 6px;
     padding: 4px;
+}
+
+span.page-link {
+    background: #409C39 !important;
+    color:white!important;
 }
 button.sidebar-toggle {
     border: none;
@@ -80,4 +85,8 @@ h4.card-title {
 }
 button#primary-btn {
     margin-left: 310px;
+}
+
+td button#primary-btn{
+    margin-left: 0px;
 }

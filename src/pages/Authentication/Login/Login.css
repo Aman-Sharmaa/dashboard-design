@@ -45,12 +45,15 @@ video.background-video {
 .logo-account {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
 }
 
+.logo-account button{
+    margin-right: 30px;
+}
 /* Logo Container */
 .logo {
     flex: 1;
@@ -209,4 +212,13 @@ input {
 
 span.ant-select-selection-item-content {
     color: black;
+}
+:where(.css-dev-only-do-not-override-1gwfwyx).ant-form-item .ant-form-item-label >label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    display: inline-block;
+    margin-inline-end: 4px;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: "" !important;
 }
